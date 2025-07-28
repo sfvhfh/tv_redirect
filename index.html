@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<script>
+// 读取源地址并重定向
+fetch('source_url.txt')
+  .then(response => response.text())
+  .then(url => {
+    if(url.trim()) {
+      // 立即重定向到真实直播源
+      window.location.replace(url.trim());
+    } else {
+      document.body.innerHTML = '<h1>直播源未配置</h1>';
+    }
+  })
+  .catch(error => {
+    document.body.innerHTML = `<h1>加载失败</h1><p>${error.message}</p>`;
+  });
+</script>
